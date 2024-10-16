@@ -1,4 +1,6 @@
-Created a one page Tic Tac Toe app using HTML, CSS, and Javascript. There are 4 files, showing the progression I made throughout the project. ttt4.html is the final product. 
+Created a one page Tic Tac Toe app using HTML, CSS, and Javascript. There are 4 files, showing the progression I made throughout the project. ttt4.html is the final product.
+
+Can be played here: https://nathanielp.sgedu.site/hw4/ttt4.html
 
 ttt1.html:
   Built a tic tac toe board using HTML and CSS. Created the 3 x3 grid of squares without using table. 
