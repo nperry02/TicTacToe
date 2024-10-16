@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .grid {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        gap: 3px;
+    }
+    .square {
+        background-color: rgb(81, 81, 148);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 75px;
+        border: 2px solid black;
+    }
+    .square:hover {
+        background-color: black;
+        color: white;
+    }
+    #playerTurn {
+        font-size: 20px;
+        color: black;
+        text-align: center;
+        background-color: rgb(81, 81, 148);
+        border: 2px solid black;
+    }
+    #winCondition {
+        font-size: 50px;
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+    .startGame {
+        background-color: rgb(81, 81, 148);
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+    #StartGame {
+        background-color: rgb(243, 128, 128);
+        font-size: 20px;
+    }
+    #StartGame:hover {
+        background-color: black;
+        color: white;
+    }
+</style>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TicTacToe4</title>
+</head>
+
+<body style="background-color: rgb(175, 86, 86);">
+
+<h1 style="text-align: center">Backyard Tic Tac Toe</h1>
+<div id="playerTurn">
+    <p>Player X's Turn</p>
+</div>
+<br>
+<div class="grid">
+    <script>
+       
+        var moves = Array(9).fill('-');
+
+        var winConditions = Array(8).fill("---");
+
+       
+
+        const NUM_SQUARES = 9;
+        for (i=0; i<NUM_SQUARES; i++)
+        {
+            id = "sq"+i;
+            document.write( "<div class='square' id='" + id + "'></div>" );
+        }
+
+        var stopGame = 0;
+        playGame(stopGame);
+
+        function playGame (stopGame) {    
+            var player = 'X';
+            const x = Math.random() * 10;
+            if (x < 5) {
+                player = 'O'
+            } 
+            playerTurn.innerText = "\nPlayer " + player + "'s Turn\n\n";
+
+            for (let i=0;i< 9; i++)
+            {   
+                document.getElementById("sq"+(i)).onclick = function () {
+                    if (stopGame == 0) {
+
+                        if (document.getElementById("sq"+(i)).innerText == '') {
+                            document.getElementById("sq"+(i)).innerText = player;
+                            if (player == 'X') {
+                                player = 'O';
+                            } else {
+                                player = 'X';
+                            }
+                            playerTurn.innerText = "\nPlayer " + player + "'s Turn\n\n";
+                            alert("Square "+ i + " pressed!");
+                            stopGame = checkState();        
+                        }
+                    }
+                }
+            }
+        }
+
+        function checkWin() {
+            for (let i = 0; i < 3; i++) {
+                let b = i*3;
+                winConditions[i] = moves[b] + moves[b+1] + moves[b+2];
+            }
+            for (let i = 3; i < 6; i++) {
+                winConditions[i] = moves[i-3] + moves[i] + moves[i+3];
+            }
+            winConditions[6] = moves[0] + moves[4] + moves[8];
+            winConditions[7] = moves[2] + moves[4] + moves[6];
+
+            var Winner = 0;
+            winConditions.forEach(testWin);
+            function testWin(value) {
+                if (value == "XXX") {
+                    winCondition.innerText ="X Wins!!"
+                    Winner = 1;
+                } else if (value == "OOO") {
+                    winCondition.innerText ="O Wins!!"
+                    Winner = 1;
+                }
+            }
+            return Winner;
+        }
+
+        function checkState() {
+            var max = 0;
+            moves.forEach(find);
+            function find(value, index, arr) {
+                value = document.getElementById("sq"+(index)).innerText;
+                if (value == '') {
+                    value = '-';
+                }
+                arr[index] = value;
+                if (value == '-') {
+                    max++;
+                }
+            }
+            let ifWin = checkWin();
+
+            if (ifWin == 1) {
+                return ifWin;
+            }
+
+            if (max == 0) {
+                winCondition.innerText ="Stalemate"
+            }
+
+            return 0;
+        }
+        
+
+        window.onload=function() {
+            document.getElementById("StartGame").onclick = function () {
+                for (let i = 0; i < 9; i++) {
+                    document.getElementById("sq"+(i)).innerText = '';
+                }
+                stopGame = 0;
+                winCondition.innerText ="";
+                playGame(0);
+            }
+        }
+        
+    </script>
+</div>
+<br>
+<div id="winCondition"></div>
+<br>
+<div class="startGame">
+    <br>
+    <input type="button"  value="New Game" id="StartGame">
+    <br> <br>
+</div>
+
+</body>
+</html>

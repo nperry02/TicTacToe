@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .grid {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        gap: 3px;
+    }
+    .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 75px;
+        border: 2px solid black;
+    }
+    .square:hover {
+        background-color: black;
+        color: white;
+    }
+    .playerTurn {
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+    .winCondition {
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+</style>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TicTacToe2</title>
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tic Tac Toe Part 2</h1>
+<div class="playerTurn">
+    <p>Player X's Turn</p>
+</div>
+<br>
+<div class="grid">
+    <script>
+        const NUM_SQUARES = 9;
+        for (i=0; i<NUM_SQUARES; i++)
+        {
+            id = "sq"+i;
+            document.write( "<div class='square' id='" + id + "'></div>" );
+        }
+
+        document.getElementById('sq2').innerText = 'X';
+        document.getElementById('sq3').innerText = 'O';
+    </script>
+</div>
+<br>
+<div class="winCondition">
+ <p>Win Condition</p>
+</div>
+
+
+</body>
+</html>

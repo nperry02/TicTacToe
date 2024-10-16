@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .grid {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        gap: 3px;
+    }
+    .square {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 75px;
+        border: 2px solid black;
+    }
+    .square:hover {
+        background-color: black;
+        color: white;
+    }
+    #playerTurn {
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+    .winCondition {
+        color: black;
+        text-align: center;
+        border: 2px solid black;
+    }
+</style>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TicTacToe2</title>
+</head>
+
+<body>
+
+<h1 style="text-align: center">Tic Tac Toe Part 3</h1>
+<div id="playerTurn">
+    <p>Player X's Turn</p>
+</div>
+<br>
+<div class="grid">
+    <script>
+
+        var player = 'X';
+        const x = Math.random() * 10;
+        if (x < 5) {
+            player = 'O'
+        }
+        playerTurn.innerText = "\nPlayer " + player + "'s Turn\n\n";
+        const NUM_SQUARES = 9;
+        for (i=0; i<NUM_SQUARES; i++)
+        {
+            id = "sq"+i;
+            document.write( "<div class='square' id='" + id + "'></div>" );
+        }
+
+        //window.onload=function() {
+        for (let i=0;i< 9; i++)
+        {
+            document.getElementById("sq"+(i)).onclick = function () {
+                if (document.getElementById("sq"+(i)).innerText == '') {
+                    document.getElementById("sq"+(i)).innerText = player;
+                    if (player == 'X') {
+                        player = 'O';
+                    } else {
+                        player = 'X';
+                    }
+                    playerTurn.innerText = "\nPlayer " + player + "'s Turn\n\n";
+                    alert("Square "+ i + " pressed!");
+                }
+            }
+        }
+
+        window.onload=function() {
+            document.getElementById("StartGame").onclick = function () {
+                for (let i = 0; i < 9; i++) {
+                document.getElementById("sq"+(i)).innerText = '';
+            }
+            }
+        }
+        
+    </script>
+</div>
+<br>
+<div class="winCondition">
+ <p>Win Condition</p>
+</div>
+<br>
+<div class="winCondition">
+    <br>
+    <input type="button" value="StartGame" id="StartGame">
+    <br> <br>
+</div>
+
+
+
+
+</body>
+</html>
